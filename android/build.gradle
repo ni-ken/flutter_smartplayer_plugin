@@ -1,0 +1,55 @@
+group 'cn.joyfollow.smartplayernativeview'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+        }
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+    // Specifies a list of ABIs that Gradle should create APKs for //include "armeabi"
+            include 'armeabi-v7a', 'arm64-v8a' //select ABIs to build APKs for
+    // Specify that we do not want to also generate a universal APK that includes all ABIs
+            universalApk true
+        }
+    }
+}
+
+dependencies{
+    api files('libs/smartavengine.jar')
+    api 'com.google.code.gson:gson:2.6.2'
+}
+
