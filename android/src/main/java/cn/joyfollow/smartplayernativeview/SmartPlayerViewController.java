@@ -250,10 +250,11 @@ public class SmartPlayerViewController implements PlatformView, MethodChannel.Me
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-//        Log.i(TAG, "++++++++++++surfaceCreated");
-//        if(smartView != null)
-//            libPlayer.SmartPlayerSetSurface(handle_,smartView);
-        libPlayer.SmartPlayerUpdateHWRenderSurface(handle_);
+       Log.i(TAG, "++++++++++++surfaceCreated");
+       if(handle_ != 0){
+        libPlayer.SmartPlayerSetOrientation(handle_,1);
+       }
+
     }
 
     @Override
